@@ -15,11 +15,14 @@ function DisplayStatus() {
       <ul className="list-unstyled">
         {displays.map((d, idx) => (
           <li key={idx} className="d-flex justify-content-between align-items-center mb-2 displayStatusRecord px-3 py-2 rounded">
-            <div>
-              <strong>{d.name}</strong>
-              <div className="fs-12 text-primary">{d.location}</div>
+            <div className="d-flex align-items-center">
+              <i className="bi bi-display fs-3 me-3 text-primary"></i>
+              <div>
+                <strong>{d.name}</strong>
+                <div className="fs-12 text-primary">{d.location}</div>
+              </div>
             </div>
-            <div className="">
+            <div className="text-end">
               <div className={d.status === 'online' ? 'text-green online fs-12' : 'text-danger offline fs-12'}>{d.status}</div>
               <div className="fs-12 text-primary">{d.uptime} uptime</div>
               <div className="fs-12 text-primary">{d.views} views</div>
