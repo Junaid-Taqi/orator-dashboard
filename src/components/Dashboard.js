@@ -1,6 +1,6 @@
 import React from 'react';
 import StatsCard from './StatsCard';
-import ChartCard from './ChartCard';
+import DonutChart from './DonutChart';
 import ActivityList from './ActivityList';
 import DisplayStatus from './DisplayStatus';
 
@@ -26,10 +26,28 @@ function Dashboard() {
         {/* second row charts */}
         <div className="row">
           <div className="col-md-6">
-            <ChartCard title="Content Distribution" />
+            <div className="card card-transparent p-3 mb-3">
+              <DonutChart
+                title="Content Distribution"
+                data={[
+                  ['Online', 70],
+                  ['Offline', 30]
+                ]}
+                colors={[ '#4bc0c0', '#eea3a3' ]}
+              />
+            </div>
           </div>
           <div className="col-md-6">
-            <ChartCard title="Total Views" />
+            <div className="card card-transparent p-3 mb-3">
+              <DonutChart
+                title="Total Views"
+                data={[
+                  ['Views Today', 2546],
+                  ['Remaining', 10000 - 2546]
+                ]}
+                colors={[ '#9cff63', '#84C7FF' ]}
+              />
+            </div>
           </div>
         </div>
 
