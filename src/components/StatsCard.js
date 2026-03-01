@@ -9,7 +9,7 @@ function StatsCard({ iconClass, value, label, subtext }) {
           <div>
             <h3 className="mb-0">{value}</h3>
             <div>{label}</div>
-            {subtext && <small className="text-muted">{subtext}</small>}
+            {subtext && <small className="text-primary">{subtext}</small>}
           </div>
         </div>
       </div>

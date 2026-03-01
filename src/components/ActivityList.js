@@ -17,7 +17,7 @@ function ActivityList() {
           <li key={idx} className="mb-2">
             <span className="me-2">•</span>
             <span>{a.text}</span>
-            <div className="text-muted small">{a.time}</div>
+            <div className="text-primary small">{a.time}</div>
           </li>
         ))}
       </ul>

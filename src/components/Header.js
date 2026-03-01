@@ -1,120 +1,77 @@
-import React, { useEffect, useRef, useState } from 'react';
-// using Bootstrap Icons (already installed) instead of FontAwesome
+import React, {useEffect, useRef, useState} from 'react';
+// using Bootstrap Icons for all icons (already installed)
 
-const Header = ({ user }) => {
+const Header = ({user}) => {
+    const [userMenuOpen, setUserMenuOpen] = useState(false);
+    const userMenuRef = useRef(null);
 
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const userMenuRef = useRef(null);
+    // Click outside to close menu logic
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+                setUserMenuOpen(false);
+            }
+        };
+        if (userMenuOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [userMenuOpen]);
 
-  // Click outside to close
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+    const handleLogout = () => {
         setUserMenuOpen(false);
-      }
+        window.location.href = '/c/portal/logout';
     };
 
-    if (userMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
+    return (
+        <nav className="displays-dashboard__nav">
+            <div className="header-left">
+                <h5 className="header-title text-primary">MUNICIPALITY OF TISNO</h5>
+                <p className="header-subtitle fs-12 m-0">Monitor your digital signage network</p>
+            </div>
 
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [userMenuOpen]);
-
-  const handleLogout = () => {
-    setUserMenuOpen(false);
-    window.location.href = '/c/portal/logout';
-  };
-
-  return (
-    <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#396C8D' }}>
-      <div className="container-fluid">
-
-        {/* Left Side */}
-        <div>
-          <span className="navbar-brand mb-0 h1 text-white">
-            MUNICIPALITY OF TISNO
-          </span>
-          <div className="text-white small">
-            Monitor your digital signage network
-          </div>
-        </div>
-
-        {/* Toggler */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-            {/* Custom User Dropdown */}
-            <li className="nav-item" ref={userMenuRef}>
-              <div style={{ position: "relative" }}>
-
+            <div className="displays-dashboard__nav-user-wrap" ref={userMenuRef}>
                 <button
-                  type="button"
-                  className="btn d-flex align-items-center text-white"
-                  onClick={() => setUserMenuOpen(v => !v)}
-                  style={{ background: "transparent", border: "none" }}
+                    type="button"
+                    className="displays-dashboard__nav-user"
+                    onClick={() => setUserMenuOpen((v) => !v)}
+                    aria-expanded={userMenuOpen}
+                    aria-haspopup="true"
                 >
-                  {/* user avatar icon */}
-                  <i className="bi bi-person-circle me-2" />
+                    <i className="bi bi-person-circle nav-user-icon" />
 
-                  <div className="text-start me-2">
-                    <div style={{ fontWeight: 600 }}>
-                      {user?.fullName || "User Name"}
+                    <div className="nav-user-info">
+                        <span className="nav-user-name">{user?.fullName || "User Name"}</span>
+                        <span className="nav-user-email">{user?.email || "user@email.com"}</span>
                     </div>
-                    <div style={{ fontSize: "12px" }}>
-                      {user?.email || "user@email.com"}
-                    </div>
-                  </div>
 
-                  <i className={`bi ${userMenuOpen ? 'bi-chevron-up' : 'bi-chevron-down'}`} />
+                    {/* Toggle Arrow Logic */}
+                    <div className="nav-user-chevron-box">
+                        <i className={`bi ${userMenuOpen ? 'bi-chevron-up' : 'bi-chevron-down'} nav-user-chevron`} />
+                    </div>
                 </button>
 
+                {/* Dropdown Menu */}
                 {userMenuOpen && (
-                  <div
-                    className="bg-white shadow rounded"
-                    style={{
-                      position: "absolute",
-                      right: 0,
-                      top: "110%",
-                      minWidth: "200px",
-                      zIndex: 1000
-                    }}
-                  >
-                    <button
-                      className="dropdown-item d-flex align-items-center"
-                      type="button"
-                    >
-                      <i className="bi bi-person me-2"></i>
-                      Profile
-                    </button>
-
-                    <button
-                      className="dropdown-item d-flex align-items-center text-danger"
-                      type="button"
-                      onClick={handleLogout}
-                    >
-                      <i className="bi bi-box-arrow-right me-2"></i>
-                      Logout
-                    </button>
-                  </div>
+                    <div className="displays-dashboard__nav-user-menu" role="menu">
+                        <button type="button" className="displays-dashboard__nav-user-menu-item" role="menuitem">
+                            <i className="bi bi-person" style={{marginRight: '10px'}} />
+                            Profile
+                        </button>
+                        <button
+                            type="button"
+                            className="displays-dashboard__nav-user-menu-item displays-dashboard__nav-user-menu-item--logout"
+                            role="menuitem"
+                            onClick={handleLogout}
+                        >
+                            <i className="bi bi-box-arrow-right" style={{marginRight: '10px'}} />
+                            Logout
+                        </button>
+                    </div>
                 )}
-
-              </div>
-            </li>
-
-          </ul>
-        </div>
-      </div>
-    </nav>
-  );
+            </div>
+        </nav>
+    );
 };
 
 export default Header;

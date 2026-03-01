@@ -17,12 +17,12 @@ function DisplayStatus() {
           <li key={idx} className="d-flex justify-content-between align-items-center mb-2">
             <div>
               <strong>{d.name}</strong>
-              <div className="small text-muted">{d.location}</div>
+              <div className="small text-primary">{d.location}</div>
             </div>
             <div className="text-end">
               <div className={d.status === 'online' ? 'text-success' : 'text-danger'}>{d.status}</div>
-              <div className="small text-muted">{d.uptime} uptime</div>
-              <div className="small text-muted">{d.views} views</div>
+              <div className="small text-primary">{d.uptime} uptime</div>
+              <div className="small text-primary">{d.views} views</div>
             </div>
           </li>
         ))}

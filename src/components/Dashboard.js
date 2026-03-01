@@ -11,16 +11,16 @@ function Dashboard() {
         <div className="row mt-4">
           <div className="col-12">
             <h2>Dashboard</h2>
-            <p className="text-muted">Monitor your digital signage network</p>
+            <p className="text-primary">Monitor your digital signage network</p>
           </div>
         </div>
 
         {/* top stats row */}
         <div className="row">
-          <StatsCard iconClass="bi bi-display" value="24" label="Total Displays" subtext="+2 this week" />
-          <StatsCard iconClass="bi bi-eye" value="45.2K" label="Total Views" subtext="+12% this week" />
-          <StatsCard iconClass="bi bi-bar-chart" value="124" label="Active Content" subtext="18 scheduled" />
-          <StatsCard iconClass="bi bi-graph-up" value="78%" label="Avg. Engagement" subtext="+5% this month" />
+          <StatsCard iconClass="bi bi-display text-primary" value="24" label="Total Displays" subtext="+2 this week" />
+          <StatsCard iconClass="bi bi-eye text-green" value="45.2K" label="Total Views" subtext="+12% this week" />
+          <StatsCard iconClass="bi bi-bar-chart text-purple" value="124" label="Active Content" subtext="18 scheduled" />
+          <StatsCard iconClass="bi bi-graph-up text-orange" value="78%" label="Avg. Engagement" subtext="+5% this month" />
         </div>
 
         {/* second row charts */}
