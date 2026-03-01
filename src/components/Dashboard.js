@@ -8,9 +8,9 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <div className="container-fluid pb-4">
-        <div className="row mt-4">
+        <div className="row">
           <div className="col-12">
-            <h2>Dashboard</h2>
+            <h3 className='m-0'>Dashboard</h3>
             <p className="text-primary">Monitor your digital signage network</p>
           </div>
         </div>

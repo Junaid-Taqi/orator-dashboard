@@ -53,6 +53,24 @@ body {
   color: #4caf50 !important;
 }
 
+.online {
+    background: #11e81161;
+    text-align: center;
+    border-radius: 40px;
+    width: 60px;
+    color: #0bf864 !important;
+}
+.offline {
+    background: #dd37378f;
+    text-align: center;
+    border-radius: 40px;
+    width: 60px;
+    color: #ff8787 !important;
+}
+.displayStatusRecord{
+    background: #417d9b8f;
+}
+
 
 
 /************ Header Styles ************/

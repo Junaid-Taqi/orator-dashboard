@@ -14,19 +14,19 @@ function DisplayStatus() {
       <h5>Display Status</h5>
       <ul className="list-unstyled">
         {displays.map((d, idx) => (
-          <li key={idx} className="d-flex justify-content-between align-items-center mb-2">
+          <li key={idx} className="d-flex justify-content-between align-items-center mb-2 displayStatusRecord px-3 py-2 rounded">
             <div>
               <strong>{d.name}</strong>
-              <div className="small text-primary">{d.location}</div>
+              <div className="fs-12 text-primary">{d.location}</div>
             </div>
-            <div className="text-end">
-              <div className={d.status === 'online' ? 'text-success' : 'text-danger'}>{d.status}</div>
-              <div className="small text-primary">{d.uptime} uptime</div>
-              <div className="small text-primary">{d.views} views</div>
+            <div className="">
+              <div className={d.status === 'online' ? 'text-green online fs-12' : 'text-danger offline fs-12'}>{d.status}</div>
+              <div className="fs-12 text-primary">{d.uptime} uptime</div>
+              <div className="fs-12 text-primary">{d.views} views</div>
             </div>
           </li>
         ))}
-      </ul>
+      </ul> 
     </div>
   );
 }
