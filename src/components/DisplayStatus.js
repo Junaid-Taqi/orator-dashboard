@@ -11,7 +11,7 @@ function DisplayStatus({ displays: apiDisplays = [] }) {
 
   return (
     <div className="card card-transparent p-3">
-      <h5>Display Status</h5>
+      <h5 className="mb-4">Display Status</h5>
       {!items.length ? (
         <p className="text-primary mb-0">No displays found.</p>
       ) : (

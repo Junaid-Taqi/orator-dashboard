@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
-      <main className="container-fluid mt-4 flex-grow-1 main-bg mt-0">
+      <main className="container-fluid flex-grow-1 main-bg mt-0 pt-3">
         <Dashboard />
       </main>
     </div>
