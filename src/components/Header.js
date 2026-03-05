@@ -41,8 +41,8 @@ const Header = ({user}) => {
                     <i className="bi bi-person-circle nav-user-icon" />
 
                     <div className="nav-user-info">
-                        <span className="nav-user-name">{user?.fullName || "User Name"}</span>
-                        <span className="nav-user-email">{user?.email || "user@email.com"}</span>
+                        <span className="nav-user-name">{user?.fullName}</span>
+                        <span className="nav-user-email">{user?.email}</span>
                     </div>
 
                     {/* Toggle Arrow Logic */}

@@ -8,6 +8,17 @@ import { fetchToken } from './Services/Slices/AuthSlice';
 function App() {
   const dispatch = useDispatch();
   const { token, expiresIn, status, error } = useSelector((state) => state.auth);
+  const user = JSON.parse(sessionStorage.getItem("liferayUser")) || {
+      "userId": "24608",
+      "fullName": "admin lahore",
+      "email": "admin@lahore.com",
+      "groups": [
+        {
+          "id": "24593",
+          "name": "Municipility One"
+        }
+      ]
+    }
 
   useEffect(() => {
     dispatch(fetchToken());
@@ -43,9 +54,9 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Header />
+      <Header user={user} />
       <main className="container-fluid flex-grow-1 main-bg mt-0 pt-3">
-        <Dashboard />
+        <Dashboard user={user} />
       </main>
     </div>
   );

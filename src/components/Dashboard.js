@@ -4,7 +4,7 @@ import ActivityList from './ActivityList';
 import DisplayStatus from './DisplayStatus';
 import { serverUrl } from '../Services/Constants/Constants';
 
-function Dashboard() {
+function Dashboard( { user } ) {
   const [summary, setSummary] = useState({
     counters: {},
     displayStatus: [],
@@ -12,17 +12,6 @@ function Dashboard() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const user = JSON.parse(sessionStorage.getItem("liferayUser")) || {
-    "userId": "24608",
-    "fullName": "admin lahore",
-    "email": "admin@lahore.com",
-    "groups": [
-      {
-        "id": "24593",
-        "name": "Municipility One"
-      }
-    ]
-  }
 
   const groupId = user?.groups?.[0]?.id;
 
