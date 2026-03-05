@@ -24,7 +24,7 @@ const Header = ({user}) => {
     };
 
     return (
-        <nav className="displays-dashboard__nav">
+        <nav className="displays-dashboard__nav main-bg">
             <div className="header-left">
                 <h5 className="header-title text-primary">MUNICIPALITY OF TISNO</h5>
                 <p className="header-subtitle fs-12 m-0">Monitor your digital signage network</p>
