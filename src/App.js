@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import { fetchToken } from './Services/Slices/AuthSlice';
+import { useTranslation } from './Services/Localization/Localization';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,11 +37,12 @@ function App() {
     }
   }, [token, expiresIn, dispatch]);
 
+  const t = useTranslation();
   const isBootstrappingAuth = !token && (status === 'idle' || status === 'loading');
   if (isBootstrappingAuth) {
     return (
       <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>
-        <div style={{ fontSize: '16px', fontWeight: 600 }}>Loading...</div>
+        <div style={{ fontSize: '16px', fontWeight: 600 }}>{t('loading')}</div>
       </div>
     );
   }
@@ -48,7 +50,7 @@ function App() {
   if (!token && status === 'failed') {
     return (
       <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', color: '#b91c1c' }}>
-        <div>Failed to load token{error ? `: ${error}` : ''}</div>
+        <div>{t('failedLoadToken')}{error ? `: ${error}` : ''}</div>
       </div>
     );
   }

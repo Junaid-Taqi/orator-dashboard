@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '../Services/Localization/Localization';
 
 const formatActivityDate = (value) => {
   if (!value) return '';
@@ -7,25 +8,26 @@ const formatActivityDate = (value) => {
   return parsed.toLocaleString();
 };
 
-const statusLabel = (status) => {
-  if (status === 1) return 'pending';
-  if (status === 2) return 'in progress';
-  if (status === 3) return 'resolved';
-  if (status === 4) return 'rejected';
+const statusLabel = (status, t) => {
+  if (status === 1) return t('statusPending');
+  if (status === 2) return t('statusInProgress');
+  if (status === 3) return t('statusResolved');
+  if (status === 4) return t('statusRejected');
   return `status ${status}`;
 };
 
 function ActivityList({ activities = [] }) {
+  const t = useTranslation();
   const items = activities.map((a) => ({
-      text: `Report #${a.reportId}: ${statusLabel(a.oldStatus)} -> ${statusLabel(a.newStatus)}${a.comment ? ` (${a.comment})` : ''}`,
+      text: `${t('report')} #${a.reportId}: ${statusLabel(a.oldStatus, t)} -> ${statusLabel(a.newStatus, t)}${a.comment ? ` (${a.comment})` : ''}`,
       time: formatActivityDate(a.date),
     }));
 
   return (
     <div className="card card-transparent p-3">
-      <h5>Recent Activity</h5>
+      <h5>{t('recentActivity')}</h5>
       {!items.length ? (
-        <p className="text-primary mb-0">No recent activity found.</p>
+        <p className="text-primary mb-0">{t('noRecentActivity')}</p>
       ) : (
         <ul className="list-unstyled">
           {items.map((a, idx) => (

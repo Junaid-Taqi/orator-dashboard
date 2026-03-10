@@ -76,3 +76,33 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+---
+
+## Language support (Croatian/English)
+
+The dashboard now includes a very light‑weight internationalisation layer.
+
+- Translated strings live in `src/Services/Localization/Localization.js`.
+- Language strings now live in two JSON files (`src/Services/Localization/hr.json`
+  and `en.json`). the file names are descriptive and make it easy to add
+  more languages later; the provider simply imports them and looks them up by
+  code.
+- The currently selected language is stored in `sessionStorage` under
+  `appLang` (default is Croatian, `"hr"`).
+- A dropdown selector has been added to the header allowing users to switch
+  languages on the fly; it uses `setLanguage()` from the localization
+  context.
+- Components consume the helper `useTranslation()` (or `useLanguage()`) and
+  render `t('someKey')` instead of hard‑coding text.
+- Changing the value in `sessionStorage` will automatically update the UI
+  (the code listens for the `storage` event); you can still switch languages
+  via the console if desired:
+  ```js
+  sessionStorage.setItem('appLang','en'); // or 'hr'
+  window.location.reload();
+  ```
+
+No layout or behaviour has been altered – only the visible strings are
+translated.
+

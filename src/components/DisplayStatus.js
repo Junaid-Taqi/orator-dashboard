@@ -1,19 +1,21 @@
 import React from 'react';
+import { useTranslation } from '../Services/Localization/Localization';
 
 function DisplayStatus({ displays: apiDisplays = [] }) {
+  const t = useTranslation();
   const items = apiDisplays.map((d) => ({
       name: d.name || `Display ${d.displayId}`,
       location: d.location || '-',
-      status: d.statusText || (Number(d.status) === 1 ? 'online' : 'offline'),
+      status: t(d.statusText ? d.statusText : (Number(d.status) === 1 ? 'online' : 'offline')),
       uptime: d.uptime || '-',
       views: d.views || null,
     }));
 
   return (
     <div className="card card-transparent p-3">
-      <h5 className="mb-4">Display Status</h5>
+      <h5 className="mb-4">{t('displayStatus')}</h5>
       {!items.length ? (
-        <p className="text-primary mb-0">No displays found.</p>
+        <p className="text-primary mb-0">{t('noDisplays')}</p>
       ) : (
         <ul className="list-unstyled">
           {items.map((d, idx) => (
@@ -26,9 +28,9 @@ function DisplayStatus({ displays: apiDisplays = [] }) {
                 </div>
               </div>
               <div className="text-end">
-                <div className={d.status === 'online' ? 'text-green online fs-12' : 'text-danger offline fs-12'}>{d.status}</div>
-                <div className="fs-12 text-primary">{d.uptime} uptime</div>
-                {!!d.views && <div className="fs-12 text-primary">{d.views} views</div>}
+                <div className={d.status === t('online') ? 'text-green online fs-12' : 'text-danger offline fs-12'}>{d.status}</div>
+                <div className="fs-12 text-primary">{d.uptime} {t('uptime')}</div>
+                {!!d.views && <div className="fs-12 text-primary">{d.views} {t('views')}</div>}
               </div>
             </li>
           ))}

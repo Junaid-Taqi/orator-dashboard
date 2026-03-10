@@ -97,6 +97,7 @@ body {
   gap: 1rem;
   padding: 0.75rem 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
 }
 
 .displays-dashboard__nav-bell {
@@ -249,6 +250,25 @@ body {
   font-size: 0.9rem;
   color: #A6B4C4;
   margin: 0;
+}
+
+/* language dropdown in nav */
+.header-lang {
+  display: flex;
+  align-items: center;
+  width: 80px;
+}
+select#lang-select option {
+    color: #fff !important;
+    background: #21536b;
+    border: 1px solid #255d79;
+}
+.header-lang select {
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid #2f82ab;
+  padding: 0.45rem 0.6rem;
+  border-radius: 4px;
 }
 
 .displays-dashboard__add-btn {

@@ -9,6 +9,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css';
 import App from './App';
+import { LanguageProvider } from './Services/Localization/Localization';
 import Store from './Services/Store/Store';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,7 +17,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={Store}>
-      <App />
+      {/* language provider ensures components can access translations and the
+          current language. default is Croatian ("hr") and the value is kept in
+          sessionStorage under the key "appLang". */}
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
     </Provider>
   </React.StrictMode>
 );

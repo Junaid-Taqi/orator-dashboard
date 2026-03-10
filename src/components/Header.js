@@ -1,9 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLanguage } from '../Services/Localization/Localization';
 // using Bootstrap Icons for all icons (already installed)
 
-const Header = ({user}) => {
+const Header = ({ user }) => {
+    const { t, lang, setLanguage } = useLanguage();
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const userMenuRef = useRef(null);
+
+    const handleLangChange = (e) => {
+        setLanguage(e.target.value);
+    };
 
     // Click outside to close menu logic
     useEffect(() => {
@@ -26,11 +32,22 @@ const Header = ({user}) => {
     return (
         <nav className="displays-dashboard__nav main-bg">
             <div className="header-left">
-                <h5 className="header-title text-primary">{user?.groups?.[0]?.name || "Municipality"}</h5>
-                <p className="header-subtitle fs-12 m-0">Monitor your digital signage network</p>
+                <h5 className="header-title text-primary">
+                    {user?.groups?.[0]?.name || t('municipality')}
+                </h5>
+                <p className="header-subtitle fs-12 m-0">{t('monitorNetwork')}</p>
             </div>
 
-            <div className="displays-dashboard__nav-user-wrap" ref={userMenuRef}>
+
+            <div className="displays-dashboard__nav-user-wrap d-flex gap-5" ref={userMenuRef}>
+                {/* language selector */}
+                <div className="header-lang">
+                    {/* <label htmlFor="lang-select" className="me-1" style={{fontSize:'0.85rem'}}>{t('language')}:</label> */}
+                    <select id="lang-select" value={lang} onChange={handleLangChange} className="form-select form-select-sm">
+                        <option value="hr">Crotian</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
                 <button
                     type="button"
                     className="displays-dashboard__nav-user"
@@ -55,8 +72,8 @@ const Header = ({user}) => {
                 {userMenuOpen && (
                     <div className="displays-dashboard__nav-user-menu" role="menu">
                         <button type="button" className="displays-dashboard__nav-user-menu-item" role="menuitem">
-                            <i className="bi bi-person" style={{marginRight: '10px'}} />
-                            Profile
+                            <i className="bi bi-person" style={{ marginRight: '10px' }} />
+                            {t('profile')}
                         </button>
                         <button
                             type="button"
@@ -64,8 +81,8 @@ const Header = ({user}) => {
                             role="menuitem"
                             onClick={handleLogout}
                         >
-                            <i className="bi bi-box-arrow-right" style={{marginRight: '10px'}} />
-                            Logout
+                            <i className="bi bi-box-arrow-right" style={{ marginRight: '10px' }} />
+                            {t('logout')}
                         </button>
                     </div>
                 )}

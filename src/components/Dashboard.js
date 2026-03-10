@@ -3,6 +3,7 @@ import StatsCard from './StatsCard';
 import ActivityList from './ActivityList';
 import DisplayStatus from './DisplayStatus';
 import { serverUrl } from '../Services/Constants/Constants';
+import { useTranslation } from '../Services/Localization/Localization';
 
 function Dashboard( { user } ) {
   const [summary, setSummary] = useState({
@@ -10,6 +11,7 @@ function Dashboard( { user } ) {
     displayStatus: [],
     recentActivity: [],
   });
+  const t = useTranslation();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -19,7 +21,7 @@ function Dashboard( { user } ) {
     const fetchDashboardSummary = async () => {
       if (!groupId) {
         setLoading(false);
-        setError('Group not found for current user.');
+        setError(t('groupNotFound'));
         return;
       }
 
@@ -38,7 +40,7 @@ function Dashboard( { user } ) {
 
         const data = await response.json();
         if (!response.ok || !data?.success) {
-          setError(data?.message || 'Failed to load dashboard summary.');
+          setError(data?.message || t('failedLoadDashboard'));
           return;
         }
 
@@ -48,7 +50,7 @@ function Dashboard( { user } ) {
           recentActivity: data?.data?.recentActivity || [],
         });
       } catch (e) {
-        setError('Failed to load dashboard summary.');
+        setError(t('failedLoadDashboard'));
       } finally {
         setLoading(false);
       }
@@ -64,8 +66,8 @@ function Dashboard( { user } ) {
       <div className="container-fluid pb-4">
         <div className="row">
           <div className="col-12">
-            <h3 className='m-0'>Dashboard</h3>
-            <p className="text-primary">Monitor your digital signage network</p>
+            <h3 className='m-0'>{t('dashboard')}</h3>
+            <p className="text-primary">{t('monitorNetwork')}</p>
             {!!error && <p className="text-danger mb-0">{error}</p>}
           </div>
         </div>
@@ -75,25 +77,25 @@ function Dashboard( { user } ) {
           <StatsCard
             iconClass="bi bi-display text-primary"
             value={loading ? '...' : String(counters.totalDisplays ?? 0)}
-            label="Total Displays"
+            label={t('totalDisplays')}
             subtext={counters.totalDisplaysSubtitle || ''}
           />
           <StatsCard
             iconClass="bi bi-eye text-green"
             value={loading ? '...' : String(counters.totalReports ?? 0)}
-            label="Total Reports"
+            label={t('totalReports')}
             subtext={counters.totalReportsSubtitle || ''}
           />
           <StatsCard
             iconClass="bi bi-bar-chart text-purple"
             value={loading ? '...' : String(counters.activeContent ?? 0)}
-            label="Active Content"
+            label={t('activeContent')}
             subtext={counters.activeContentSubtitle || ''}
           />
           <StatsCard
             iconClass="bi bi-graph-up text-orange"
             value={loading ? '...' : String(counters.totalUsers ?? 0)}
-            label="Total Users"
+            label={t('totalUsers')}
             subtext={counters.totalUsersSubtitle || ''}
           />
         </div>
