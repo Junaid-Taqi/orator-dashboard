@@ -25,5 +25,6 @@
   "groupNotFound": "Grupa nije prona\u0111ena za trenutnog korisnika.",
   "failedLoadDashboard": "Neuspjelo u\u010ditavanje sa\u017eetka nadzorne plo\u010de.",
   "failedLoadToken": "Neuspjelo u\u010ditavanje tokena",
-  "language": "Jezik"
+  "language": "Jezik",
+  "PublicPortal":"Javni portal"
 }

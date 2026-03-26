@@ -25,5 +25,6 @@
   "groupNotFound": "Group not found for current user.",
   "failedLoadDashboard": "Failed to load dashboard summary.",
   "failedLoadToken": "Failed to load token",
-  "language": "Language"
+  "language": "Language",
+  "PublicPortal":"Public Portal"
 }

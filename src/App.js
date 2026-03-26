@@ -62,7 +62,7 @@ function App() {
       <Header user={user} />
       <main className="container-fluid flex-grow-1 main-bg mt-0 pt-3">
         <button className='publicPortalButton ms-2 my-3' onClick={() => navigate("/")}>
-          Public Portal
+          {t('PublicPortal')}
         </button>
         <Dashboard user={user} />
       </main>
