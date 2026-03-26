@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.publicPortalButton {
+    align-items: center;
+    background-color: #1fc8db;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    gap: 6px;
+    padding: 8px 18px;
+    text-decoration: none;
+    transition: .3s;
+    white-space: nowrap;
+}

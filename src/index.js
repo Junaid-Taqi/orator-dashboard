@@ -12,6 +12,7 @@ import App from './App';
 import { LanguageProvider } from './Services/Localization/Localization';
 import Store from './Services/Store/Store';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,7 +22,9 @@ root.render(
           current language. default is Croatian ("hr") and the value is kept in
           sessionStorage under the key "appLang". */}
       <LanguageProvider>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </LanguageProvider>
     </Provider>
   </React.StrictMode>

@@ -5,21 +5,23 @@ import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import { fetchToken } from './Services/Slices/AuthSlice';
 import { useTranslation } from './Services/Localization/Localization';
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token, expiresIn, status, error } = useSelector((state) => state.auth);
   const user = JSON.parse(sessionStorage.getItem("liferayUser")) || {
-      "userId": "24608",
-      "fullName": "admin lahore",
-      "email": "admin@lahore.com",
-      "groups": [
-        {
-          "id": "24593",
-          "name": "Municipility One"
-        }
-      ]
-    }
+    "userId": "24608",
+    "fullName": "admin lahore",
+    "email": "admin@lahore.com",
+    "groups": [
+      {
+        "id": "24593",
+        "name": "Municipility One"
+      }
+    ]
+  }
 
   useEffect(() => {
     dispatch(fetchToken());
@@ -59,6 +61,9 @@ function App() {
     <div className="d-flex flex-column min-vh-100">
       <Header user={user} />
       <main className="container-fluid flex-grow-1 main-bg mt-0 pt-3">
+        <button className='publicPortalButton ms-2 my-3' onClick={() => navigate("/")}>
+          Public Portal
+        </button>
         <Dashboard user={user} />
       </main>
     </div>
